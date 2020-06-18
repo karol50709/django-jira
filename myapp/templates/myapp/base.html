@@ -4,21 +4,23 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap-theme.min.css"> 
-        <link rel="stylesheet" href="{% static 'myapp/style.css' %}">       
+        <link rel="stylesheet" href="{% static 'myapp/style.css' %}">     
+        {% block import %} {% endblock %}
     </head>
     <body>
         <div id="header-title">
             <h1>Jira 2.0</h1>
             <p>Szkielety tworzenia aplikacji</p>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="">Strona Główna</a>
+                <a class="navbar-brand" href="{% url 'all-projects' %}">Strona Główna</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="myapp/all-projects">Lista projektów <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Panel admina</a>
+                    <a class="nav-item nav-link active" href="{% url 'all-projects' %}">Lista projektów <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="{% url 'project-add' %}">Dodaj Projekt <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="{% url 'issue-add' %}">Dodaj Issue <span class="sr-only">(current)</span></a>
                   </div>
                 </div>
               </nav>

@@ -1,0 +1,13 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+    console.log('it work');
+</script>
+<div>
+    <div>
+        <input id="issue_id" value={{issue.id}} hidden>
+        <h5>Szczegóły issue: <b>{{issue.issue_name}}</b></h5>
+    </div>
+</div>
+{% endblock %}
