@@ -1,0 +1,25 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+    <h1>Lista Projektów</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th>Nazwa projektu</th>
+              <th>Prefix</th>
+              <th>Opis</th>
+              <th></th>
+            </tr>
+          </thead>
+        <tbody>
+        {% for project in projects %}
+        <tr >
+            <td>{{project.project_name}}</td>
+            <td>{{project.project_prefix}}</td>
+            <td>{{project.project_desc}}</td>
+            <td><a href="project/{{project.id}}">Szczegóły</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
