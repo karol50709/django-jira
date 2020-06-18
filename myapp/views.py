@@ -49,3 +49,10 @@ def issue_detail(request, issue_id):
     issue = Issue.objects.get(pk=issue_id)
     context = {'issue': issue}
     return render(request, 'myapp/issue_details.html',context)
+
+def issue_update(request, issue_id, issue_position):
+    issue = Issue.objects.get(pk=issue_id)
+    issue.issue_position = issue_position
+    issue.save()
+    context = {'issue': issue}
+    return render(request, 'myapp/issue_details.html',context)
