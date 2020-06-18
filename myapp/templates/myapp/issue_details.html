@@ -7,8 +7,8 @@
         <input id="issue_id" value={{issue.id}} hidden>
         <input id="issue_position" value={{issue.issue_position}} hidden>
         <h5>Szczegóły issue: <b>{{issue.issue_name}}</b></h5>
-        <h5>Status:</h5>
-        <p id="status"></p>
+        <h5>Status: <p id="status"></p></h5>
+        
         <p>Zmień status</p>
         <div class="btn-group" role="group" aria-label="Basic example">
             <a id="1b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=0 %}" role="button">Wybrane do zrobienia</a>
@@ -18,9 +18,9 @@
             <a id="5b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=4 %}" role="button">Gotowe</a>
         </div>
         <div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a class="btn btn-warning" href="{% url 'issue-update' issue_id=issue.id issue_position=0 %}" role="button">Powrót do listy projektów</a>
-                <a class="btn btn-danger" href="{% url 'issue-update' issue_id=issue.id issue_position=1 %}" role="button">Usuń issue</a>
+            <div id="issue-actions" class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-warning" href="{% url 'project' issue.issue_project.id %}" role="button">Powrót do szczegółów projektu</a>
+                <a class="btn btn-danger" href="{% url 'issue-delete' issue.id %}" role="button">Usuń issue</a>
             </div>
         </div>
     </div>

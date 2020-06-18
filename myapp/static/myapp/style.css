@@ -1,8 +1,16 @@
 body {
-   font-family: 'Courier New', Courier, monospace ;
    margin: 20px;
 }
 
 #header-title {
+    padding: 10px;
     background-color: aqua;
+}
+
+#issue-actions {
+    margin-top: 10px;
+}
+
+#issue-table {
+    margin-top: 10px;
 }

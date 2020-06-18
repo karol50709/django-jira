@@ -16,7 +16,7 @@
             <td>{{project.project_name}}</td>
             <td>{{project.project_prefix}}</td>
             <td>{{project.project_desc}}</td>
-            <td><a href="project/{{project.id}}">Szczegóły</a></td>
+            <td><a href="{% url 'project' project.id %}">Szczegóły</a></td>
         </tr>
         {% endfor %}
         </tbody>
