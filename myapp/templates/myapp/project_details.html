@@ -1,7 +1,53 @@
 {% extends "myapp/base.html" %}
 {% block content %}
 <div>
-    <h5>{{project.project_name}}</h5>
-    <h5>{{project.project_desc}}</h5>
+    <div>
+        <h5>{{project.project_name}}</h5>
+        <h5>{{project.project_desc}}</h5>
+    </div>
+    <div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                  <th>Wybrane do zrobienia</th>
+                  <th>W trakcie</th>
+                  <th>Oczekuje na akceptację</th>
+                  <th>Testowanie</th>
+                  <th>Gotowe</th>
+                </tr>
+              </thead>
+            <tbody>
+                {% for issue in issues %}
+                <tr >
+                    <td>
+                        {% if issue.issue_position == 0 %}
+                            {{issue.issue_name}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if issue.issue_position == 1 %}
+                            {{issue.issue_name}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if issue.issue_position == 2 %}
+                            {{issue.issue_name}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if issue.issue_position == 3 %}
+                            {{issue.issue_name}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if issue.issue_position == 4 %}
+                            {{issue.issue_name}}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
