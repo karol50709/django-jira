@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Project
+from .models import Project, Issue
 from .forms import ProjectForm
 
 # Create your views here.
@@ -28,4 +28,8 @@ def projectAdd(request):
 
 def project_detail(request, project_id):
     project = Project.objects.get(pk=project_id)
-    return render(request, 'myapp/project_details.html',{'project': project})
+    issues = Issue.objects.select_related().filter(issue_project = project_id)
+    context = {
+                "project": project,
+                "issues": issues}
+    return render(request, 'myapp/project_details.html',context)
