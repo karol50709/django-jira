@@ -1,13 +1,60 @@
 {% extends "myapp/base.html" %}
 
 {% block content %}
-<script type="text/javascript">
-    console.log('it work');
-</script>
+
 <div>
     <div>
         <input id="issue_id" value={{issue.id}} hidden>
+        <input id="issue_position" value={{issue.issue_position}} hidden>
         <h5>Szczegóły issue: <b>{{issue.issue_name}}</b></h5>
+        <h5>Status:</h5>
+        <p id="status"></p>
+        <p>Zmień status</p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a id="1b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=0 %}" role="button">Wybrane do zrobienia</a>
+            <a id="2b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=1 %}" role="button">W trakcie</a>
+            <a id="3b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=2 %}" role="button">Oczekuje na akceptację</a>
+            <a id="4b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=3 %}" role="button">Testowanie</a>
+            <a id="5b" class="btn btn-secondary" href="{% url 'issue-update' issue_id=issue.id issue_position=4 %}" role="button">Gotowe</a>
+        </div>
+        <div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-warning" href="{% url 'issue-update' issue_id=issue.id issue_position=0 %}" role="button">Powrót do listy projektów</a>
+                <a class="btn btn-danger" href="{% url 'issue-update' issue_id=issue.id issue_position=1 %}" role="button">Usuń issue</a>
+            </div>
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+    console.log('it work');
+    function setStatus(){
+        let x = document.getElementById("issue_position").value
+        console.log(x);
+        switch(x){
+            case "0":
+                document.getElementById("status").innerHTML="Wybrane do zrobienia"
+                document.getElementById("1b").className="btn btn-primary" 
+                break;
+            case "1":
+                document.getElementById("status").innerHTML="W trakcie"
+                document.getElementById("2b").className="btn btn-primary" 
+                break;
+            case "2":
+                document.getElementById("status").innerHTML="Oczekuje na akceptację"
+                document.getElementById("3b").className="btn btn-primary" 
+                break;
+            case "3":
+                document.getElementById("status").innerHTML="Testowanie"
+                document.getElementById("4b").className="btn btn-primary" 
+                break;
+            case "4":
+                document.getElementById("status").innerHTML="Gotowe"
+                document.getElementById("5b").className="btn btn-primary" 
+                break;
+            default:
+                document.getElementById("status").innerHTML="NaN"
+        }
+    }
+    setStatus();   
+</script>
 {% endblock %}
