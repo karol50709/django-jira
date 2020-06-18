@@ -44,3 +44,8 @@ def issueAdd(request):
         p.save()
     form = IssueForm()
     return render(request, 'myapp/issue_add.html',{'form': form})
+
+def issue_detail(request, issue_id):
+    issue = Issue.objects.get(pk=issue_id)
+    context = {'issue': issue}
+    return render(request, 'myapp/issue_details.html',context)
