@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from .models import Project, Issue
-from .forms import ProjectForm
+from .forms import ProjectForm, IssueForm
 
 # Create your views here.
 
@@ -28,8 +28,19 @@ def projectAdd(request):
 
 def project_detail(request, project_id):
     project = Project.objects.get(pk=project_id)
-    issues = Issue.objects.select_related().filter(issue_project = project_id)
-    context = {
-                "project": project,
-                "issues": issues}
+    issues = Issue.objects.filter(issue_project=project_id)
+    context = {'project': project,
+                'issues': issues}
     return render(request, 'myapp/project_details.html',context)
+
+def issueAdd(request):
+    if request.method == 'POST':
+        form = IssueForm(request.POST)
+        p = Issue(issue_name = form.data['issue_name'],
+                    issue_level = form.data['issue_level'], 
+                    issue_description = form.data['issue_description'],
+                    issue_project = Project.objects.get(pk=form.data['issue_project']),
+                    issue_position = 0)
+        p.save()
+    form = IssueForm()
+    return render(request, 'myapp/issue_add.html',{'form': form})
