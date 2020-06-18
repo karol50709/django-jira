@@ -3,6 +3,6 @@
 <form action="{% url 'issue-add' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Utwórz"/>
+    <input class="btn btn-primary" type="submit" value="Utwórz issue">
 </form>
 {% endblock %}

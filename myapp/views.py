@@ -47,7 +47,10 @@ def issueAdd(request):
 
 def issue_detail(request, issue_id):
     issue = Issue.objects.get(pk=issue_id)
-    context = {'issue': issue}
+    project = Project.objects.get(pk=issue.issue_project.id)
+    context = {'issue': issue,
+                'project': project
+                }
     return render(request, 'myapp/issue_details.html',context)
 
 def issue_update(request, issue_id, issue_position):
@@ -56,3 +59,10 @@ def issue_update(request, issue_id, issue_position):
     issue.save()
     context = {'issue': issue}
     return render(request, 'myapp/issue_details.html',context)
+
+def issue_delete(request, issue_id):
+    issue = Issue.objects.get(pk=issue_id)
+    project = Project.objects.get(pk=issue.issue_project.id)
+    issue.delete()
+    context = {'project': project}
+    return render(request, 'myapp/project_details.html',context)
