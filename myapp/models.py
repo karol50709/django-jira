@@ -15,6 +15,7 @@ class Issue(models.Model):
     issue_level = models.IntegerField()
     issue_description = models.CharField(max_length=100)
     issue_project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    issue_position = models.IntegerField()
 
     def __str__(self):
         return "{}".format(self.issue_name)
